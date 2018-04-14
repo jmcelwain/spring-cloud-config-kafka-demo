@@ -1,6 +1,23 @@
 ---
-version: '2'
+version: '3'
 services:
+  client:
+    image: spring-cloud-config-kafka-demo-client:latest
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    links:
+      - kafka
+      - server
+
+  server:
+    image: spring-cloud-config-kafka-demo-server:latest
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    links:
+      - postgres
+
   postgres:
     image: postgres:latest
     environment:

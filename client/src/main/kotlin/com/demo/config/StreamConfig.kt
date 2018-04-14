@@ -7,6 +7,6 @@ import org.springframework.context.annotation.Configuration
 @RefreshScope
 @Configuration
 class StreamConfig {
-    @Value("\${events.process}")
+    @Value("\${events.process:false}")
     var processEvents: Boolean = false
 }

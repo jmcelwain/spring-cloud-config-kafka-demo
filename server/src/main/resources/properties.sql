@@ -1,4 +1,4 @@
-CREATE TABLE public.properties
+CREATE TABLE IF NOT EXISTS public.properties
 (
   application CHARACTER VARYING(50) COLLATE pg_catalog."default",
   profile     CHARACTER VARYING(50) COLLATE pg_catalog."default",
