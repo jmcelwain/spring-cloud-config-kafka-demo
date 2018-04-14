@@ -1,4 +1,4 @@
-package com.demo.springcloudconfigkafkademoserver
+package com.demo
 
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner
 
 @RunWith(SpringRunner::class)
 @SpringBootTest
-class SpringCloudConfigKafkaDemoServerApplicationTests {
+class DemoServerApplicationTests {
 
 	@Test
 	fun contextLoads() {
