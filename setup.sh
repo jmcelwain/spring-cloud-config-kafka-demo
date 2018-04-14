@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # install jars
-mvn clean install
+mvn clean install -DskipTests
 
 # builder containers
 docker-compose build --no-cache
@@ -14,3 +14,5 @@ docker-compose up -d
 
 # create database
 docker-compose exec postgres createdb -U postgres configdb
+
+docker-compose logs -f client
