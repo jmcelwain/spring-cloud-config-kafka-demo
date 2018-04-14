@@ -1,0 +1,1 @@
+docker-compose exec postgres createdb -U postgres configdb

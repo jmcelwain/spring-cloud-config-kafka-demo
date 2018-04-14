@@ -1,26 +1,30 @@
-package com.demo.springcloudconfigkafkademoclient
+package com.demo.stream
 
+import com.demo.config.StreamConfig
 import org.slf4j.LoggerFactory
-import org.springframework.beans.factory.annotation.Value
-import org.springframework.cloud.context.config.annotation.RefreshScope
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.cloud.stream.annotation.EnableBinding
 import org.springframework.cloud.stream.annotation.StreamListener
 import org.springframework.cloud.stream.messaging.Sink
 import org.springframework.stereotype.Component
+import javax.annotation.PostConstruct
 
 @Component
-@RefreshScope
 @EnableBinding(Sink::class)
-open class KafkaMessageSink {
+class KafkaMessageSink(@Autowired val config: StreamConfig) {
     private val logger = LoggerFactory.getLogger(KafkaMessageSink::class.java)
 
-    @Value("\${events.process}")
-    var processEvents: Boolean = false
+    @PostConstruct
+    fun postConstruct() {
+        logger.info("process events: {}", config.processEvents)
+    }
 
     @StreamListener(Sink.INPUT)
     fun receive(message: String) {
-        if (processEvents) {
+        if (config.processEvents) {
             logger.info("{}", message)
+        } else {
+            logger.info("ignoring message")
         }
     }
 }
